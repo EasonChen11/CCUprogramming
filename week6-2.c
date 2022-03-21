@@ -21,8 +21,8 @@ int main(){
         while (s[j]<s[j-1] && j< strlen(s)-1){
             swap(s,j);
             j--;
-        }*/
-    }
+        }
+    }*/
     printf("after sorting=");
     puts(s);
 }
