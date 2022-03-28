@@ -36,6 +36,23 @@ int main() {
         int **chart_pp=chart_ptr;
         Game(attacker,target,chart_pp);
     }    while(chart[0][0]>0 && chart[1][0]>0 && chart[2][0]>0);
+    for (int i = 0; i < 4; ++i) {
+        if(i==0)
+            printf("%- 9s",tital[i]);
+        else
+            printf("%- 4s",tital[i]);
+    }
+    printf("\n");
+    for (int i = 0; i < 3; ++i) {
+        printf("%- 8s",name[i]);
+        for (int j = 0; j < 3; ++j) {
+            if(j==0)
+                printf("%- 4d",chart[i][j]);
+            else
+                printf("% 4d",chart[i][j]);
+        }
+        printf("\n");
+    }
         for (int i = 0; i < 3; ++i) {
         if(chart[i][0]<=0){
             printf("%s Died! Game over!\n",name[i]);
