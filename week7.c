@@ -2,7 +2,7 @@
 
 void Game(int attacker, int target, int **formPtr);
 int main() {
-    int chart[3][3]={{70,30,40},{40,15,30},{20,60,40}};
+    int chart[3][3]={{70,40,20},{30,15,60},{40,30,40}};
     char tital[][4]={"job","HP","DEF","ATK"};
     char name[][8]={{"Warrior"},{"Wizard"},{"Archer"}};
     do{
@@ -66,8 +66,8 @@ void Game(int attacker, int target, int **formPtr){
     target-=1;
     int ATK=*(*(formPtr+attacker)+2);
     if(*(*(formPtr+target)+1)<ATK){
+        *(*(formPtr+target)+0)-=(ATK-(*(*(formPtr+target)+1)));
         *(*(formPtr+target)+1)=0;
-        *(*(formPtr+target)+0)-=(ATK-*(*(formPtr+target)+1));
     }else{
         *(*(formPtr+target)+1)-=ATK;
     }
