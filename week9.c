@@ -82,7 +82,7 @@ data * add_data(data * pData, int length) {
     }
     free(pData);
     printf("enter your order(A,B,C,...)\n");
-    scanf("%c",&(new_data+sizeof (data)*length)->order);
+    scanf(" %c",&(new_data+sizeof (data)*length)->order);
     fflush(stdin);
     printf("enter your ID(0~1000)\n");
     scanf("%d",&(new_data+sizeof (data)*length)->id);
