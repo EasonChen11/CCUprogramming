@@ -55,14 +55,10 @@ int main() {
 data * remove_data(data * pData, int index, int length) {
     data *new_data=malloc(sizeof (data)*(length-1));
     int k=0;
-    for(int i=0;i<sizeof (data)*length;i+=sizeof (data)){
-        if(i==sizeof (data)*(index-1))
+    for(int i=0;i<length;i++){
+        if(i==index-1)
             continue;
-        (new_data+k)->takeout=(pData+i)->takeout;
-        (new_data+k)->price=(pData+i)->price;
-        (new_data+k)->order=(pData+i)->order;
-        (new_data+k)->id=(pData+i)->id;
-        k+=sizeof (data);
+        new_data[k++]=pData[i];
     }
     free(pData);
     return new_data;
@@ -74,33 +70,30 @@ data * add_data(data * pData, int length) {
         fprintf(stderr,"Error:unable to allocate required memory");
         return NULL;
     }
-    for (int i = 0; i < length*sizeof (data); i+=sizeof (data)) {
-        (new_data+i)->takeout=(pData+i)->takeout;
-        (new_data+i)->price=(pData+i)->price;
-        (new_data+i)->order=(pData+i)->order;
-        (new_data+i)->id=(pData+i)->id;
+    for (int i = 0; i < length; i++) {
+        new_data[i]=pData[i];
     }
     free(pData);
     printf("enter your order(A,B,C,...)\n");
-    scanf(" %c",&(new_data+sizeof (data)*length)->order);
+    scanf(" %c",&(new_data[length].order));
     fflush(stdin);
     printf("enter your ID(0~1000)\n");
-    scanf("%d",&(new_data+sizeof (data)*length)->id);
+    scanf("%d",&(new_data[length].id));
     fflush(stdin);
     printf("enter your price(0~10000)\n");
-    scanf("%d",&(new_data+sizeof (data)*length)->price);
+    scanf("%d",&(new_data[length].price));
     fflush(stdin);
     do{
         printf("enter your For here(0) or Take out(1)\n");
-        scanf("%d",&(new_data+sizeof (data)*length)->takeout);
+        scanf("%d",&(new_data[length].takeout));
         fflush(stdin);
-    } while ((new_data+sizeof (data)*length)->takeout!=0 && (new_data+sizeof (data)*length)->takeout!=1);
+    } while (new_data[length].takeout!=0 && new_data[length].takeout!=1);
     return new_data;
 }
 
 void print_data(data * pData, int length) {
     int k=1;
-    for (int i = 0; i < length*sizeof (data); i+=sizeof (data)) {
+    for (int i = 0; i < length; i++) {
         printf("%d. order=%c id=%-4d price=%-5d \"%s\"\n",k++,(pData+i)->order,(pData+i)->id,(pData+i)->price,takeout[(pData+i)->takeout]);
     }
 }
